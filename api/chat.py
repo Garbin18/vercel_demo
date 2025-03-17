@@ -1,10 +1,10 @@
 from http.server import BaseHTTPRequestHandler
 import json
 import os
-import openai
+from openai import OpenAI
 
 # 从环境变量获取API密钥
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -14,8 +14,9 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             # 调用OpenAI API
-            response = openai.chat.completions.create(
+            response = client.chat.completions.create(
                 model="gpt-4o-mini",
+                store=True,
                 messages=[{
                     "role": "user",
                     "content": data['message']
@@ -26,7 +27,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({
-                "reply": response.choices[0].message['content']
+                "reply": response.choices[0].message.content
             }).encode())
             
         except Exception as e:
