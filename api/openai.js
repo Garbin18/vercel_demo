@@ -10,15 +10,15 @@ export default async (req, res) => {
     console.log(messages);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       messages,
       temperature: 0.7,
     });
 
-    console.log(completion.choices[0].message.content);
+    console.log(completion.choices[0].message);
 
     res.status(200).json({
-      reply: completion.choices[0].message.content
+      reply: completion.choices[0].message
     });
 
   } catch (error) {
