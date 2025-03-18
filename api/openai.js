@@ -7,16 +7,18 @@ const openai = new OpenAI({
 export default async (req, res) => {
   try {
     const { messages } = req.body;
+    console.log(messages);
     
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      role: "user",
+      model: "gpt-4o",
       messages,
       temperature: 0.7,
     });
 
+    console.log(completion.choices[0].message.content);
+
     res.status(200).json({
-      reply: completion.choices[0].message
+      reply: completion.choices[0].message.content
     });
 
   } catch (error) {
