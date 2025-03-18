@@ -1,5 +1,17 @@
 .App {
   text-align: center;
+  min-height: 100vh;        /* 占据整个视口高度 */
+  display: flex;
+  flex-direction: column;   /* 垂直排列 */
+  align-items: center;      /* 水平居中 */
+  padding: 2rem;            /* 添加呼吸空间 */
+}
+
+h1 {
+  margin-bottom: 2rem;      /* 标题与聊天框间距 */
+  text-align: center;       /* 文字水平居中 */
+  font-size: 2.5rem;        /* 标题字号 */
+  color: #2d3748;           /* 现代深灰色 */
 }
 
 .App-logo {
