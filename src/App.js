@@ -1,28 +1,17 @@
-import React, { useState } from 'react';
-import ChatDialog from './ChatDialog';
+import ChatBox from './ChatBox'; // 确保路径正确
+import './ChatBox.css'; // 引入样式文件
 
 function App() {
-  const [dialogOpen, setDialogOpen] = useState(false);
-
   return (
     <div className="App">
-      <h1>AI 对话助手</h1>
-      <button 
-        onClick={() => setDialogOpen(true)}
-        style={{ padding: '10px 20px', fontSize: '1.2rem' }}
-      >
-        打开对话
-      </button>
-      
-      <ChatDialog 
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-      />
+      <h1>AI 助手</h1>
+      <ChatBox />
     </div>
   );
 }
 
 export default App;
+
 
 // import logo from './logo.svg';
 // import './App.css';
