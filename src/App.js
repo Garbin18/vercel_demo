@@ -1,91 +1,116 @@
-// import ChatBox from './ChatBox'; // 确保路径正确
-// import './ChatBox.css'; // 引入样式文件
-
-import React from 'react';
+import React,{ useState } from 'react';
 import { SearchOutlined, MessageOutlined,PictureOutlined,FundViewOutlined,UserSwitchOutlined,HeartOutlined} from '@ant-design/icons';
-import { ManOutlined, BilibiliOutlined, WomanOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
-import logo from './assets/images/realemika.jpg';
+import { ManOutlined, BilibiliOutlined, WomanOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
+import { Layout, Menu, theme,Button} from 'antd';
+import logo from './assets/images/strategyai.svg';
+import ChatBox from './ChatBox'; 
+import './ChatBox.css'; 
 
 const { Header, Content, Sider } = Layout;
-const items1 = [
+const header_titles = [
   { key: 1,label: 'Girls',icon: <WomanOutlined />},
   { key: 2,label: 'Anime',icon: <BilibiliOutlined />},
   { key: 3,label: 'Guys',icon: <ManOutlined />}
 ];
-const items2 = [
-  { key: 1,label: 'Explore',icon: <SearchOutlined />},
-  { key: 2,label: 'Chat',icon: <MessageOutlined />},
+const sider_titles = [
+  { key: 1,label: 'Chat',icon: <SearchOutlined />},
+  { key: 2,label: 'Explore',icon: <MessageOutlined />},
   { key: 3,label: 'Collection',icon: <PictureOutlined />},
   { key: 4,label: 'Generate Image',icon: <FundViewOutlined />},
   { key: 5,label: 'Create Character',icon: <UserSwitchOutlined />},
   { key: 6,label: 'My AI',icon: <HeartOutlined />},
 ];
-const darkTheme = {
-  backgroundColor: '#000000',
-  textColor: '#ffffff',
-  menuDarkBg: '#141414',
-  footerBg: '#000000'
-};
 
 const App = () => {
+  const [collapsed, setCollapsed] = useState(true);
+  const [selectedMenuKey, setSelectedMenuKey] = useState('1');
   const {
-    token: { borderRadiusLG },
+    token: { colorBgContainer, borderRadiusLG ,colorBorder},
   } = theme.useToken();
+  const renderContent = () => {
+    switch(selectedMenuKey) {
+      case '1':
+        return <ChatBox />;
+      case '2':
+        return <div>Anime Content</div>;
+      case '3':
+        return <div>Guys Content</div>;
+      default:
+        return <div>Default Content</div>;
+    }
+  };
   return (
-    <Layout style={{ minHeight: '100vh', display: 'flex',flexDirection: 'column',background: darkTheme.backgroundColor}}>
+    <Layout style={{ minHeight: '100vh', display: 'flex',flexDirection: 'column',}}>
       {/* 顶部导航栏 */}
-      <Header style={{display: 'flex',alignItems: 'center',background: darkTheme.backgroundColor, }}>
-        <div style={{display: 'flex',alignItems: 'center',marginRight: 10,cursor: 'pointer'}} /> 
+      <Header style={{display: 'flex',alignItems: 'center',}}>
         <img
             src={logo}
             alt="Website Logo"
             style={{
-              height: 58,
+              height: 100,
               width: 'auto',
-              maxWidth: 180,
+              maxWidth: 240,
+              marginLeft:'-20px'
             }}
         />
+        <div style={{marginLeft:'-20px'}}>
+          <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+                color:'white'
+              }}
+            />
+          </div>
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['1']}
-          items={items1}
-          style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none',color: darkTheme.textColor}}
+          // defaultSelectedKeys={['1']}
+          selectedKeys={[selectedMenuKey]}
+          items={header_titles}
+          onSelect={({ key }) => setSelectedMenuKey(key)}
+          style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none'}}
         />
       </Header>
-      <div style={{padding: '0 48px',flex: 1,display: 'flex',flexDirection: 'column'}}>
+      <div style={{flex: 1,display: 'flex',flexDirection: 'column',}}>
         <Layout
           style={{
-            padding: '24px 0',
-            background: darkTheme.backgroundColor,
+            background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
+            height: '100%',
           }}
         >
-          <Sider style={{
-              background: darkTheme.backgroundColor,
-              height: '100%',
-              borderRight: '1px solid rgba(255,255,255,0.08)'
-            }} 
-              width={200}>
-            <Menu
-              mode="inline" //垂直模式
-              theme="dark"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{height: '100%',background: 'transparent',color: darkTheme.textColor}}
-              items={items2}
-            />
-          </Sider>
+          <div style={{border: `1px solid ${colorBorder}`,}}>
+            <Sider 
+              collapsible 
+              trigger={null} 
+              collapsed={collapsed}
+              style={{
+                height: '100%',
+                background: colorBgContainer,
+                padding: '12px 0',
+              }} 
+                width={260}>
+              <Menu
+                mode="inline" //垂直模式
+                defaultSelectedKeys={['1']}
+                defaultOpenKeys={['sub1']}
+                style={{height: '100%',background: 'transparent',paddingLeft:'10px'}}
+                items={sider_titles}
+              />
+            </Sider>
+          </div>
           <Content style={{
+              margin: '24px 16px',
               padding: '0 24px',
               minHeight: 280,
               bottom: 0,
-              background: darkTheme.backgroundColor,
-              color: darkTheme.textColor
             }}>
-            Content
+            {renderContent()}
           </Content>
         </Layout>
       </div>
@@ -93,16 +118,5 @@ const App = () => {
   );
 };
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <h1>AI 助手</h1>
-//       <ChatBox />
-//     </div>
-//   );
-// }
-
-// export default App;
 
    

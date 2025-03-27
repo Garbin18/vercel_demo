@@ -36,6 +36,7 @@ export default function ChatBox() {
 
   return (
     <div className="chat-container">
+      <h1 style={{display: 'flex',justifyContent: 'center',alignItems: 'center',}}>AI 助手</h1>
       <div className="messages">
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>
