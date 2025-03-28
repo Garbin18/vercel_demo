@@ -36,7 +36,7 @@ export default function ChatBox() {
 
   return (
     <div className="chat-container">
-      <h1 style={{display: 'flex',justifyContent: 'center',alignItems: 'center',}}>AI 助手</h1>
+      {/* <h1 style={{display: 'flex',justifyContent: 'center',alignItems: 'center',}}>AI 助手</h1> */}
       <div className="messages">
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>
@@ -45,18 +45,19 @@ export default function ChatBox() {
         ))}
         {loading && <div className="message system">⏳ 思考中...</div>}
       </div>
-
-      <form onSubmit={handleSubmit} className="input-box">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="输入消息..."
-          disabled={loading}
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? '发送中...' : '发送'}
-        </button>
-      </form>
+      <div className="form">
+        <form onSubmit={handleSubmit} className="input-box">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="输入消息..."
+            disabled={loading}
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? '发送中...' : '发送'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -40,7 +40,10 @@ const App = () => {
     }
   };
   return (
-    <Layout style={{ minHeight: '100vh', display: 'flex',flexDirection: 'column',}}>
+    <Layout style={{ 
+          minHeight: '100vh', 
+          display: 'flex',
+          flexDirection: 'column',}}>
       {/* 顶部导航栏 */}
       <Header style={{display: 'flex',alignItems: 'center',}}>
         <img
@@ -76,12 +79,14 @@ const App = () => {
           style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none'}}
         />
       </Header>
-      <div style={{flex: 1,display: 'flex',flexDirection: 'column',}}>
+      <div style={{flex: 1,display: 'flex',flexDirection: 'column',overflow: 'hidden',position: 'relative'}}>
         <Layout
           style={{
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            height: '100%',
+            // height: '100%',
+            flex: 1,
+            overflow: 'hidden'
           }}
         >
           <div style={{border: `1px solid ${colorBorder}`,}}>
@@ -105,10 +110,15 @@ const App = () => {
             </Sider>
           </div>
           <Content style={{
-              margin: '24px 16px',
-              padding: '0 24px',
-              minHeight: 280,
-              bottom: 0,
+              margin: 0,
+              padding: 0,
+              flex: 1,
+              display: 'flex',
+              overflow: 'hidden'
+              // margin: '16px 16px',
+              // padding: '0 24px',
+              // minHeight: 280,
+              // bottom: 0,
             }}>
             {renderContent()}
           </Content>
