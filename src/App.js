@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
-import { SearchOutlined, MessageOutlined,PictureOutlined,FundViewOutlined,UserSwitchOutlined,HeartOutlined} from '@ant-design/icons';
-import { ManOutlined, BilibiliOutlined, WomanOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
+import { OpenAIOutlined , MessageOutlined,PictureOutlined,FundViewOutlined,UserSwitchOutlined,HeartOutlined} from '@ant-design/icons';
+import { SlidersOutlined, GlobalOutlined, CommentOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme,Button} from 'antd';
 import logo from './assets/images/strategyai.svg';
 import OpenaiChatBox from './components/OpenaiChatBox/OpenaiChatBox';
@@ -8,12 +8,12 @@ import DeepseekChatBox from './components/DeepseekChatBox/DeepseekChatBox';
 
 const { Header, Content, Sider } = Layout;
 const header_titles = [
-  { key: 1,label: 'Girls',icon: <WomanOutlined />},
-  { key: 2,label: 'Anime',icon: <BilibiliOutlined />},
-  { key: 3,label: 'Guys',icon: <ManOutlined />}
+  { key: 1,label: 'Chat',icon: <CommentOutlined />},
+  { key: 2,label: 'News',icon: <GlobalOutlined />},
+  { key: 3,label: 'Strategy',icon: <SlidersOutlined />}
 ];
 const sider_titles = [
-  { key: 1,label: 'openai',icon: <SearchOutlined />},
+  { key: 1,label: 'openai',icon: <OpenAIOutlined />},
   { key: 2,label: 'deepseek',icon: <MessageOutlined />},
   { key: 3,label: 'Collection',icon: <PictureOutlined />},
   { key: 4,label: 'Generate Image',icon: <FundViewOutlined />},
@@ -50,10 +50,12 @@ const App = () => {
             src={logo}
             alt="Website Logo"
             style={{
-              height: 100,
+              // height: 100,
+              height: 'clamp(36px, 6vw, 60px)',
               width: 'auto',
-              maxWidth: 240,
-              marginLeft:'-20px'
+              objectFit: 'contain',
+              // maxWidth: 240,
+              marginLeft:'-40px'
             }}
         />
         <div style={{marginLeft:'-20px'}}>
@@ -77,7 +79,14 @@ const App = () => {
           style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none'}}
         />
       </Header>
-      <div style={{flex: 1,display: 'flex',flexDirection: 'column',overflow: 'hidden',position: 'relative'}}>
+      <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          position: 'relative',
+          // fontSize: 'clamp(12px, 2vw, 14px)'
+          }}>
         <Layout
           style={{
             background: colorBgContainer,

@@ -18,6 +18,45 @@
   height: calc(100vh - 72px);
 }
 
+.message pre {
+  background: #f6f8fa !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  margin: 0.8rem 0 !important;
+}
+
+.message pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9em !important;
+}
+
+/* 用户消息中的代码块适配 */
+.message.user pre {
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 行内代码 */
+.message code:not(pre code) {
+  background: rgba(175, 184, 193, 0.2);
+  padding: 0.2em 0.4em !important;
+  border-radius: 4px !important;
+  font-size: 0.9em;
+}
+
+/* 保持消息容器样式 */
+.message.user code:not(pre code) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 语法高亮覆盖 */
+.hljs {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
 /* 消息通用样式 */
 .message {
   margin: 0.8rem 0;
@@ -135,3 +174,4 @@
   background: #888;
   border-radius: 3px;
 }
+
