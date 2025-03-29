@@ -19,11 +19,11 @@
 }
 
 .message pre {
-  background: #f6f8fa !important;
-  padding: 1rem !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+  /* padding: 1rem !important; */
   border-radius: 8px !important;
   overflow-x: auto !important;
-  margin: 0.8rem 0 !important;
+  /* margin: 0.8rem 0 !important; */
 }
 
 .message pre code {
@@ -41,7 +41,7 @@
 /* 行内代码 */
 .message code:not(pre code) {
   background: rgba(175, 184, 193, 0.2);
-  padding: 0.2em 0.4em !important;
+  /* padding: 0.2em 0.4em !important; */
   border-radius: 4px !important;
   font-size: 0.9em;
 }
