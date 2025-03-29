@@ -17,14 +17,34 @@ export default function OpenaiChatBox() {
     setLoading(true);
 
     try {
+      // 添加 Assistant 的空白消息用于逐步更新
+      setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+
       const response = await fetch('/api/openai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages })
       });
 
-      const { reply } = await response.json();
-      setMessages(prev => [...prev, reply]);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        // 解码并更新最后一条消息
+        const chunk = decoder.decode(value);
+        setMessages(prev => {
+          const lastIndex = prev.length - 1;
+          const newMessages = [...prev];
+          newMessages[lastIndex].content += chunk;
+          return newMessages;
+        });
+      }
+
+      // const { reply } = await response.json();
+      // setMessages(prev => [...prev, reply]);
       
     } catch (error) {
       setMessages(prev => [...prev, {
@@ -39,11 +59,6 @@ export default function OpenaiChatBox() {
   return (
     <div className="chat-container">
       <div className="messages">
-        {/* {messages.map((msg, i) => (
-          <div key={i} className={`message ${msg.role}`}>
-            <div className="content">{msg.content}</div>
-          </div>
-        ))} */}
         {messages.map((msg, i) => (
         <div key={i} className={`message ${msg.role}`}>
           <div className="content">
