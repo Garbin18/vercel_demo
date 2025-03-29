@@ -110,15 +110,11 @@ const App = () => {
             </Sider>
           </div>
           <Content style={{
-              margin: 0,
               padding: 0,
               flex: 1,
               display: 'flex',
-              overflow: 'hidden'
-              // margin: '16px 16px',
-              // padding: '0 24px',
-              // minHeight: 280,
-              // bottom: 0,
+              overflow: 'hidden',
+              // margin: '16px 36px',
             }}>
             {renderContent()}
           </Content>
