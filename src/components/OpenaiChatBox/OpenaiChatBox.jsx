@@ -1,6 +1,7 @@
+import './OpenaiChatBox.css'
 import { useState } from 'react';
 
-export default function ChatBox() {
+export default function OpenaiChatBox() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,6 @@ export default function ChatBox() {
 
   return (
     <div className="chat-container">
-      {/* <h1 style={{display: 'flex',justifyContent: 'center',alignItems: 'center',}}>AI 助手</h1> */}
       <div className="messages">
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>

@@ -3,8 +3,8 @@ import { SearchOutlined, MessageOutlined,PictureOutlined,FundViewOutlined,UserSw
 import { ManOutlined, BilibiliOutlined, WomanOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme,Button} from 'antd';
 import logo from './assets/images/strategyai.svg';
-import ChatBox from './ChatBox'; 
-import './ChatBox.css'; 
+import OpenaiChatBox from './components/OpenaiChatBox/OpenaiChatBox';
+import DeepseekChatBox from './components/DeepseekChatBox/DeepseekChatBox';
 
 const { Header, Content, Sider } = Layout;
 const header_titles = [
@@ -13,8 +13,8 @@ const header_titles = [
   { key: 3,label: 'Guys',icon: <ManOutlined />}
 ];
 const sider_titles = [
-  { key: 1,label: 'Chat',icon: <SearchOutlined />},
-  { key: 2,label: 'Explore',icon: <MessageOutlined />},
+  { key: 1,label: 'openai',icon: <SearchOutlined />},
+  { key: 2,label: 'deepseek',icon: <MessageOutlined />},
   { key: 3,label: 'Collection',icon: <PictureOutlined />},
   { key: 4,label: 'Generate Image',icon: <FundViewOutlined />},
   { key: 5,label: 'Create Character',icon: <UserSwitchOutlined />},
@@ -30,13 +30,13 @@ const App = () => {
   const renderContent = () => {
     switch(selectedMenuKey) {
       case '1':
-        return <ChatBox />;
+        return <OpenaiChatBox />;
       case '2':
-        return <div>Anime Content</div>;
+        return <DeepseekChatBox />;
       case '3':
-        return <div>Guys Content</div>;
+        return <div>...</div>;
       default:
-        return <div>Default Content</div>;
+        return <div>...</div>;
     }
   };
   return (
@@ -72,10 +72,8 @@ const App = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          // defaultSelectedKeys={['1']}
-          selectedKeys={[selectedMenuKey]}
           items={header_titles}
-          onSelect={({ key }) => setSelectedMenuKey(key)}
+          defaultSelectedKeys={['1']}
           style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none'}}
         />
       </Header>
@@ -102,8 +100,9 @@ const App = () => {
                 width={260}>
               <Menu
                 mode="inline" //垂直模式
+                selectedKeys={[selectedMenuKey]}
+                onSelect={({ key }) => setSelectedMenuKey(key)}
                 defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
                 style={{height: '100%',background: 'transparent',paddingLeft:'10px'}}
                 items={sider_titles}
               />
