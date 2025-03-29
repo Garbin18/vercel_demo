@@ -74,7 +74,7 @@ export default function OpenaiChatBox() {
           </div>
         </div>
         ))}
-        {loading && <div className="message system">⏳ 思考中...</div>}
+        {/* {loading && <div className="message system">⏳ 思考中...</div>} */}
       </div>
       <div className="form">
         <form onSubmit={handleSubmit} className="input-box">

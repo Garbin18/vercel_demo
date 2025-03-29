@@ -42,10 +42,18 @@ const App = () => {
   return (
     <Layout style={{ 
           minHeight: '100vh', 
-          display: 'flex',
-          flexDirection: 'column',}}>
+          position: 'relative', // 添加相对定位
+          // display: 'flex',
+          // flexDirection: 'column',
+          }}>
       {/* 顶部导航栏 */}
-      <Header style={{display: 'flex',alignItems: 'center',}}>
+      <Header style={{
+          position: 'fixed',
+          zIndex: 1,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          }}>
         <img
             src={logo}
             alt="Website Logo"
@@ -96,7 +104,14 @@ const App = () => {
             overflow: 'hidden'
           }}
         >
-          <div style={{border: `1px solid ${colorBorder}`,}}>
+          <div style={{
+              border: `1px solid ${colorBorder}`,
+              position: 'fixed',
+              bottom: 0,
+              zIndex: 1,
+              left: 0,
+              top: 64,
+              }}>
             <Sider 
               collapsible 
               trigger={null} 
@@ -105,6 +120,7 @@ const App = () => {
                 height: '100%',
                 background: colorBgContainer,
                 padding: '12px 0',
+                overflow: 'auto',
               }} 
                 width={260}>
               <Menu
@@ -118,10 +134,16 @@ const App = () => {
             </Sider>
           </div>
           <Content style={{
-              padding: 0,
-              flex: 1,
-              display: 'flex',
+              marginLeft: collapsed ? 80 : 260,
+              marginTop: 64,
+              transition: 'margin 0.2s',
+              height: 'calc(100vh - 64px)',
               overflow: 'hidden',
+              position: 'relative'
+              // padding: 0,
+              // flex: 1,
+              // display: 'flex',
+              // overflow: 'hidden',
               // margin: '16px 36px',
             }}>
             {renderContent()}
