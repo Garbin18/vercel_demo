@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeHighlight from 'rehype-highlight'
-import 'highlight.js/styles/github.css'
 import './OpenaiChatBox.css'
 
 
@@ -51,31 +47,18 @@ export default function OpenaiChatBox() {
         {messages.map((msg, i) => (
         <div key={i} className={`message ${msg.role}`}>
           <div className="content">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
-              components={{
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || '')
-                  return !inline ? (
-                    <pre className={className} {...props}>
-                      <code className={match ? className : 'language-plaintext'}>
-                        {children}
-                      </code>
-                    </pre>
-                  ) : (
-                    <code className={className} {...props}>
-                      {children}
-                    </code>
-                  )
-                }
-              }}
-            >
-              {msg.content}
-            </ReactMarkdown>
+            {msg.content.split('```').map((segment, index) => (
+              index % 2 === 0 ? (
+                <span key={index}>{segment}</span>
+              ) : (
+                <pre key={index}>
+                  <code>{segment}</code>
+                </pre>
+              )
+            ))}
           </div>
         </div>
-      ))}
+        ))}
         {loading && <div className="message system">⏳ 思考中...</div>}
       </div>
       <div className="form">
