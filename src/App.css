@@ -25,6 +25,24 @@ h1 {
   }
 }
 
+/* 移动端样式（小于768px） */
+@media (max-width: 768px) {
+  .header-logo,
+  .auth-buttons {
+    display: none !important;
+  }
+  
+  /* 调整菜单项间距 */
+  .ant-menu-horizontal {
+    margin-left: -20px !important;
+  }
+  
+  /* 折叠按钮保持可见 */
+  .ant-btn {
+    display: inline-flex !important;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

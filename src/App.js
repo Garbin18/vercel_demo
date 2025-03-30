@@ -1,10 +1,11 @@
 import React,{ useState } from 'react';
 import { OpenAIOutlined , MessageOutlined,PictureOutlined,FundViewOutlined,UserSwitchOutlined,HeartOutlined} from '@ant-design/icons';
-import { SlidersOutlined, GlobalOutlined, CommentOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
+import { CommentOutlined,SlidersOutlined,GlobalOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme,Button} from 'antd';
 import logo from './assets/images/strategyai.svg';
 import OpenaiChatBox from './components/OpenaiChatBox/OpenaiChatBox';
 import DeepseekChatBox from './components/DeepseekChatBox/DeepseekChatBox';
+import './App.css'
 
 const { Header, Content, Sider } = Layout;
 const header_titles = [
@@ -43,8 +44,6 @@ const App = () => {
     <Layout style={{ 
           minHeight: '100vh', 
           position: 'relative', // 添加相对定位
-          // display: 'flex',
-          // flexDirection: 'column',
           }}>
       {/* 顶部导航栏 */}
       <Header style={{
@@ -54,7 +53,7 @@ const App = () => {
           display: 'flex',
           alignItems: 'center',
           }}>
-        <div style={{marginLeft:'-40px'}}>
+        <div style={{ display: 'flex', alignItems: 'center',marginLeft:'-40px', flex: 'none' }}>
           <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -63,28 +62,52 @@ const App = () => {
                 fontSize: '16px',
                 width: 64,
                 height: 64,
-                color:'white'
+                color:'white',
+                marginRight:'20px'
               }}
             />
-        </div>
-        <img
-            src={logo}
-            alt="Website Logo"
-            style={{
-              // height: 100,
-              height: 'clamp(36px, 6vw, 60px)',
-              width: 'auto',
-              objectFit: 'contain',
-              marginLeft:'-20px'
+          <img
+              src={logo}
+              className="header-logo"
+              alt="Website Logo"
+              style={{
+                height: 'clamp(36px, 6vw, 60px)',
+                width: 'auto',
+                objectFit: 'contain',
+                marginLeft:'-40px'
+              }}
+          />
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            items={header_titles}
+            defaultSelectedKeys={['1']}
+            style={{ 
+              flex: 1, 
+              minWidth: 300,
+              background: 'transparent',
+              borderBottom: 'none',
+              justifyContent: 'center', 
+              marginLeft:'10px'
             }}
-        />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          items={header_titles}
-          defaultSelectedKeys={['1']}
-          style={{flex: 1, minWidth: 0,background: 'transparent',borderBottom: 'none'}}
-        />
+          />
+        </div>
+        {/* 新增登录注册按钮组 */}
+        <div className="auth-buttons" style={{ marginLeft: 'auto', display: 'flex', gap: 8}}>
+          <Button 
+            type="text" 
+            style={{ color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}
+          >
+            登录
+          </Button>
+          <Button 
+            type="primary" 
+            ghost
+            style={{ fontWeight: 500 }}
+          >
+            注册
+          </Button>
+        </div>
       </Header>
       <div style={{
           flex: 1,
