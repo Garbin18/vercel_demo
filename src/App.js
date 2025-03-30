@@ -54,19 +54,7 @@ const App = () => {
           display: 'flex',
           alignItems: 'center',
           }}>
-        <img
-            src={logo}
-            alt="Website Logo"
-            style={{
-              // height: 100,
-              height: 'clamp(36px, 6vw, 60px)',
-              width: 'auto',
-              objectFit: 'contain',
-              // maxWidth: 240,
-              marginLeft:'-40px'
-            }}
-        />
-        <div style={{marginLeft:'-20px'}}>
+        <div style={{marginLeft:'-40px'}}>
           <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -78,7 +66,18 @@ const App = () => {
                 color:'white'
               }}
             />
-          </div>
+        </div>
+        <img
+            src={logo}
+            alt="Website Logo"
+            style={{
+              // height: 100,
+              height: 'clamp(36px, 6vw, 60px)',
+              width: 'auto',
+              objectFit: 'contain',
+              marginLeft:'-20px'
+            }}
+        />
         <Menu
           theme="dark"
           mode="horizontal"
@@ -128,7 +127,7 @@ const App = () => {
                 selectedKeys={[selectedMenuKey]}
                 onSelect={({ key }) => setSelectedMenuKey(key)}
                 defaultSelectedKeys={['1']}
-                style={{height: '100%',background: 'transparent',paddingLeft:'10px'}}
+                style={{height: '100%',background: 'transparent'}}
                 items={sider_titles}
               />
             </Sider>
@@ -140,11 +139,6 @@ const App = () => {
               height: 'calc(100vh - 64px)',
               overflow: 'hidden',
               position: 'relative'
-              // padding: 0,
-              // flex: 1,
-              // display: 'flex',
-              // overflow: 'hidden',
-              // margin: '16px 36px',
             }}>
             {renderContent()}
           </Content>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect, useRef } from 'react';
 import './OpenaiChatBox.css'
 
 
@@ -6,6 +6,15 @@ export default function OpenaiChatBox() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null); 
+
+  // 新增滚动逻辑
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: 'auto',    // 可以改成 'smooth' 启用平滑滚动
+      block: 'nearest'     // 或 'end' 根据需求调整
+    });
+  }, [messages]); // 当 messages 变化时触发
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,6 +83,8 @@ export default function OpenaiChatBox() {
           </div>
         </div>
         ))}
+        {/* 添加滚动锚点 */}
+        <div ref={messagesEndRef} />
         {/* {loading && <div className="message system">⏳ 思考中...</div>} */}
       </div>
       <div className="form">
