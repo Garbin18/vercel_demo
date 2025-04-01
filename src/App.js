@@ -36,14 +36,6 @@ const App = () => {
     }
   };
 
-  const mobileMenu = (
-    <Menu
-      selectedKeys={[selectedMenuKey]}
-      onSelect={({ key }) => setSelectedMenuKey(key)}
-      items={menuItems}
-    />
-  );
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       {/* 顶部导航栏 */}
@@ -97,7 +89,13 @@ const App = () => {
             alignItems: 'center' // 确保整体垂直居中
           }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Dropdown overlay={mobileMenu} trigger={['click']}>
+              <Dropdown 
+                menu={{
+                  items: menuItems,
+                  selectedKeys: [selectedMenuKey],
+                  onClick: ({ key }) => setSelectedMenuKey(key)
+                }} 
+                trigger={['click']}>
                 <Button 
                   type="text" 
                   icon={<MenuOutlined />}
