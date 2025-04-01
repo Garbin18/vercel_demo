@@ -27,10 +27,10 @@ h1 {
 
 /* 移动端样式（小于768px） */
 @media (max-width: 768px) {
-  .header-logo,
+  /* .header-logo,
   .auth-buttons {
     display: none !important;
-  }
+  } */
   
   /* 调整菜单项间距 */
   .ant-menu-horizontal {

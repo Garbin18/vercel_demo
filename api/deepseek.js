@@ -28,24 +28,11 @@ export default async (req, res) => {
 
       res.end();
         
-      // const completion = await openai.chat.completions.create({
-      //   model: "deepseek-chat",
-      //   messages,
-      //   temperature: 0.7,
-      // });
-  
-  
-      // res.status(200).json({
-      //   reply: completion.choices[0].message
-      // });
   
     } catch (error) {
       console.error('API Error:', error);
       // 流式错误需要特殊处理
       res.write(JSON.stringify({ error: error.message || 'Server Error' }));
       res.end();
-      // res.status(500).json({
-      //   error: error.message || 'Server Error'
-      // });
     }
   };

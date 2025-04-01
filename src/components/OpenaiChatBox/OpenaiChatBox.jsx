@@ -92,11 +92,11 @@ export default function OpenaiChatBox() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="输入消息..."
+            placeholder="messages..."
             disabled={loading}
           />
           <button type="submit" disabled={loading}>
-            {loading ? '发送中...' : '发送'}
+            {loading ? 'sending...' : 'send'}
           </button>
         </form>
       </div>
