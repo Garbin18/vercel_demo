@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { CommentOutlined, GlobalOutlined, SlidersOutlined, MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { Layout, Menu, Button, Dropdown } from 'antd';
-import logo from './assets/images/strategyai.svg';
-import OpenaiChatBox from './components/OpenaiChatBox/OpenaiChatBox';
-import DeepseekChatBox from './components/DeepseekChatBox/DeepseekChatBox';
+import logo from './assets/images/Remika.png';
+import HomePage from './components/HomePage/HomePage';
+// import OpenaiChatBox from './components/OpenaiChatBox/OpenaiChatBox';
+// import DeepseekChatBox from './components/DeepseekChatBox/DeepseekChatBox';
 import './App.css';
 
 const { Header, Content } = Layout;
 
 const menuItems = [
-  { key: '1', label: 'openai', icon: <CommentOutlined /> },
-  { key: '2', label: 'deepseek', icon: <GlobalOutlined /> },
-  { key: '3', label: 'Strategy', icon: <SlidersOutlined /> }
+  { key: '1', label: 'Models' },
+  { key: '2', label: 'Analyses' },
+  { key: '3', label: 'News' }
 ];
 
 const App = () => {
@@ -28,13 +29,13 @@ const App = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  const renderContent = () => {
-    switch(selectedMenuKey) {
-      case '1': return <OpenaiChatBox />;
-      case '2': return <DeepseekChatBox />;
-      default: return <OpenaiChatBox />;
-    }
-  };
+  // const renderContent = () => {
+  //   switch(selectedMenuKey) {
+  //     case '1': return <OpenaiChatBox />;
+  //     case '2': return <DeepseekChatBox />;
+  //     default: return <OpenaiChatBox />;
+  //   }
+  // };
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -43,27 +44,29 @@ const App = () => {
         position: 'fixed',
         zIndex: 1,
         width: '100%',
-        height: 64,
+        height: 80,
         display: 'flex',
         alignItems: 'center',
         padding: '0 16px',
-        background: '#001529'
+        background: '#ffffff',
+        borderBottom: '1px solid #f0f0f0', 
       }}>
         {/* 电脑端布局 */}
         {!isMobile ? (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', flex: 1,marginLeft:'20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flex: 1, marginLeft:'350px',height: '100%' }}>
               <img
                 src={logo}
                 alt="Logo"
                 style={{
-                  height: 40,
+                  height: 50,
                   width: 'auto',
-                  marginRight: 24
+                  marginRight: 34,
+                  objectFit: 'contain'
                 }}
               />
               <Menu
-                theme="dark"
+                theme="light"
                 mode="horizontal"
                 selectedKeys={[selectedMenuKey]}
                 onSelect={({ key }) => setSelectedMenuKey(key)}
@@ -71,12 +74,13 @@ const App = () => {
                 style={{ 
                   flex: 1,
                   borderBottom: 'none',
-                  lineHeight: '62px'
+                  lineHeight: '78px',
+                  fontSize: 17,
+                  marginLeft:'20px'
                 }}
               />
             </div>
-            <div style={{ display: 'flex', gap: 8,marginRight:'30px' }}>
-              {/* <Button type="text" style={{ color: 'rgba(255,255,255,0.85)' }}>登录</Button> */}
+            <div style={{ display: 'flex', gap: 8,marginRight:'430px' }}>
               <Button type="primary" ghost>Get Started</Button>
             </div>
           </>
@@ -98,10 +102,10 @@ const App = () => {
                 trigger={['click']}>
                 <Button 
                   type="text" 
-                  icon={<MenuOutlined />}
+                  icon={<MenuOutlined style={{ color: 'rgba(0, 0, 0, 0.88)' }}/>}
                   style={{ 
                     color: 'white',
-                    fontSize: 18,
+                    fontSize: 20,
                     width: 48,
                     height: 48
                   }}
@@ -113,12 +117,12 @@ const App = () => {
               src={logo}
               alt="Logo"
               style={{
-                height: 32,
+                height: 40,
                 width: 'auto',
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                marginLeft:'-50px'
+                marginLeft:'-60px'
               }}
             />
 
@@ -128,17 +132,6 @@ const App = () => {
               alignItems: 'center', // 修复：按钮组垂直居中
               marginRight:'10px'
             }}>
-              {/* <Button 
-                type="text" 
-                size="small"
-                style={{ 
-                  color: 'rgba(255,255,255,0.85)',
-                  padding: '0 6px',
-                  height: 32
-                }}
-              >
-                登录
-              </Button> */}
               <Button 
                 type="primary" 
                 ghost 
@@ -157,9 +150,11 @@ const App = () => {
         marginTop: 64,
         padding: 16,
         height: 'calc(100vh - 64px)',
-        overflow: 'auto'
+        overflow: 'auto',
+        background: '#ffffff',
       }}>
-        {renderContent()}
+        {/* {renderContent()} */}
+        <HomePage />
       </Content>
     </Layout>
   );

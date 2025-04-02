@@ -1,0 +1,68 @@
+.hero-section {
+    display: flex;
+    justify-content: center;
+    /* min-height: calc(100vh - 80px); 减去导航栏高度 */
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero-content {
+    /* margin-top: 10px; */
+    max-width: 1000px;
+  }
+  
+  .highlight-blue {
+    color: #1890ff !important; /* Ant Design 主蓝色 */
+    display: inline-block; /* 保持文字流式布局 */
+    position: relative;
+  }
+
+  .main-title {
+    font-size: 5.8rem !important; 
+    margin-bottom: 1.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+  
+  .sub-title {
+    font-size: 2rem !important;
+    color: #666 !important;
+    line-height: 1.6 !important;
+    max-width: 700px;
+    margin: 0 auto !important;
+  }
+
+  .cta-button {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+    letter-spacing: 0.5px !important;
+    font-weight: 500 !important;
+  }
+  
+  /* 悬停效果 */
+  .cta-button:hover, 
+  .cta-button:focus {
+    background-color: #333 !important;
+    border-color: #333 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  @media (max-width: 768px) {
+
+    .main-title {
+      font-size: 2.2rem !important;
+    }
+    
+    .sub-title {
+      font-size: 1.1rem !important;
+      padding: 0 1rem;
+    }
+
+    .cta-button {
+        width: 60% !important;
+        padding: 0 20px !important;
+        font-size: 1rem !important;
+        height: 44px !important;
+      }
+  }
