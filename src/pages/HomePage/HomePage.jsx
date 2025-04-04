@@ -1,10 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Typography,Button } from 'antd';
 import './HomePage.css'; 
 
 const { Title, Paragraph } = Typography;
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="hero-section">
       <div className="hero-content">
@@ -27,6 +31,7 @@ const HomePage = () => {
             padding: '0 40px',
             fontSize: '1.3rem'
           }}
+          onClick={() => navigate('/signup')}  
         >
           Get Started For Free
         </Button>
