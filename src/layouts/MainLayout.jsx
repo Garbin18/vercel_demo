@@ -1,7 +1,8 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet,useNavigate  } from 'react-router-dom';
 import { Layout, Menu, Button, Dropdown } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import { UserButton, useUser } from '@clerk/clerk-react';
 import logo from '../assets/images/Remika.png';
 
 const { Header, Content } = Layout;
@@ -15,6 +16,8 @@ const menuItems = [
 const MainLayout = () => {
   const [isMobile, setIsMobile] = React.useState(false);
   const [selectedMenuKey, setSelectedMenuKey] = React.useState('1');
+  const { user } = useUser(); // 获取用户信息
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -60,8 +63,29 @@ const MainLayout = () => {
                 }}
               />
             </div>
-            <div style={{ display: 'flex', gap: 8, marginRight:'430px' }}>
-              <Button type="primary" ghost>Get Started</Button>
+            <div style={{ display: 'flex', gap: 8, marginRight:'430px', alignItems: 'center' }}>
+              {user ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <Button 
+                    type="primary" 
+                    ghost
+                    onClick={() => navigate('/dashboard')}
+                    style={{ marginRight: 8 }}
+                  >
+                    Dashboard
+                  </Button>
+                  <span style={{ fontSize: 14 }}>{user.fullName}</span>
+                  <UserButton 
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-10 h-10" // 控制头像大小
+                      }
+                    }}
+                  />
+                </div>
+              ) : (
+                <Button type="primary" ghost>Get Started</Button>
+              )}
             </div>
           </>
         ) : (
@@ -95,9 +119,19 @@ const MainLayout = () => {
               }}
             />
             <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginRight:'10px' }}>
-              <Button type="primary" ghost size="small" style={{ height: 32 }}>
-                Get Started
-              </Button>
+              {user ? (
+                <UserButton 
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-8 h-8" // 移动端头像稍小
+                    }
+                  }}
+                />
+              ) : (
+                <Button type="primary" ghost size="small" style={{ height: 32 }}>
+                  Get Started
+                </Button>
+              )}
             </div>
           </div>
         )}

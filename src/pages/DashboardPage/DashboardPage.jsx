@@ -1,7 +1,9 @@
 import React,{ useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MessageOutlined} from '@ant-design/icons';
 import { SlidersOutlined,GlobalOutlined,MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme,Button} from 'antd';
+import { UserButton, useUser } from '@clerk/clerk-react';
 import InvestmentAdviser from '../../components/Dashboard/InvestmentAdviser/InvestmentAdviser';
 import StockAnalysis from '../../components/Dashboard/StockAnalysis/StockAnalysis';
 import RealtimeNews from '../../components/Dashboard/RealtimeNews/RealtimeNews';
@@ -16,6 +18,10 @@ const sider_titles = [
 ];
 
 const DashboardPage = () => {
+
+  const { user } = useUser(); // 获取用户信息
+
+  const navigate = useNavigate();
 
   // 初始化时根据屏幕宽度设置折叠状态
   const [collapsed, setCollapsed] = useState(() => {
@@ -78,7 +84,7 @@ const DashboardPage = () => {
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!collapsed)}
               style={{
-                fontSize: '16px',
+                fontSize: '20px',
                 width: 64,
                 height: 64,
                 color:'black',
@@ -89,20 +95,30 @@ const DashboardPage = () => {
               src={logo}
               className="header-logo"
               alt="Website Logo"
+              onClick={() => navigate('/')}
               style={{
                 height: '30px',
                 width: 'auto',
                 objectFit: 'contain',
+                cursor: 'pointer' // 添加指针样式
               }}
           />
         </div>
         <div className="auth-buttons" style={{ marginLeft: 'auto', display: 'flex', gap: 8}}>
-          <Button 
-            type="text" 
-            style={{ color: 'black', fontWeight: 500 }}
-          >
-            登录
-          </Button>
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontSize: 14 }}>{user.fullName}</span>
+              <UserButton 
+                appearance={{
+                  elements: {
+                    avatarBox: "w-10 h-10" // 控制头像大小
+                  }
+                }}
+              />
+            </div>
+          ) : (
+            <Button type="primary" ghost>Get Started</Button>
+          )}
         </div>
       </Header>
       <div style={{
@@ -140,14 +156,29 @@ const DashboardPage = () => {
                 padding: '12px 0',
                 overflow: 'auto',
               }} 
-                width={260}>
+                width={280}>
               <Menu
                 mode="inline" //垂直模式
                 selectedKeys={[selectedMenuKey]}
                 onSelect={({ key }) => setSelectedMenuKey(key)}
                 defaultSelectedKeys={['1']}
-                style={{height: '100%',background: 'transparent'}}
-                items={sider_titles}
+                style={{
+                  height: '100%',
+                  background: 'transparent',
+                  fontSize: '18px',
+                  '& .ant-menu-title-content': {
+                    display: 'flex',
+                    alignItems: 'center'
+                  }
+                }}
+                // items={sider_titles}
+                items={sider_titles.map(item => ({
+                  ...item,
+                  style: { 
+                    height: 70,        // 菜单项高度
+                    lineHeight: '60px' // 文字垂直居中
+                  }
+                }))}
               />
             </Sider>
           </div>

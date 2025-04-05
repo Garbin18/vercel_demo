@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage/HomePage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
+import SignInPage from './pages/auth/SignInPage/SignInPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import './App.css';
 
@@ -22,9 +23,9 @@ const App = () => {
           {/* 主布局包裹所有需要导航栏的页面 */}
           <Route path="/" element={<MainLayout />}>
             <Route index  element={<HomePage />} />
-            <Route path="signup" element={<SignUpPage />} />
           </Route>
-
+          <Route path="signup" element={<SignUpPage />} />
+          <Route path="signin" element={<SignInPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </Router>
