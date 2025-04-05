@@ -43,7 +43,7 @@ const MainLayout = () => {
               <img
                 src={logo}
                 alt="Logo"
-                style={{ height: 50, width: 'auto', marginRight: 34, objectFit: 'contain' }}
+                style={{ height: 30, width: 'auto', marginRight: 34, objectFit: 'contain' }}
               />
               <Menu
                 theme="light"
@@ -86,7 +86,7 @@ const MainLayout = () => {
               src={logo}
               alt="Logo"
               style={{
-                height: 40,
+                height: 30,
                 width: 'auto',
                 position: 'absolute',
                 left: '50%',

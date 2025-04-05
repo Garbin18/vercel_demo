@@ -1,0 +1,70 @@
+.App {
+    text-align: center;
+    min-height: 100vh;        /* 占据整个视口高度 */
+    display: flex;
+    flex-direction: column;   /* 垂直排列 */
+    align-items: center;      /* 水平居中 */
+    padding: 2rem;            /* 添加呼吸空间 */
+  }
+  
+  h1 {
+    margin-bottom: 2rem;      /* 标题与聊天框间距 */
+    text-align: center;       /* 文字水平居中 */
+    font-size: 2.5rem;        /* 标题字号 */
+    color: #2d3748;           /* 现代深灰色 */
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  /* 移动端样式（小于768px） */
+  @media (max-width: 768px) {
+    .header-logo,
+    .auth-buttons {
+      display: none !important;
+    }
+    
+    /* 调整菜单项间距 */
+    .ant-menu-horizontal {
+      margin-left: -20px !important;
+    }
+    
+    /* 折叠按钮保持可见 */
+    .ant-btn {
+      display: inline-flex !important;
+    }
+
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

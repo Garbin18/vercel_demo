@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage/HomePage';
 import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import './App.css';
 
 const App = () => {
     
-  // const clerk_publishable_key = '...'; 
-  const clerk_publishable_key = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
+  const clerk_publishable_key = 'pk_test_aW50ZXJuYWwtc2x1Zy03NS5jbGVyay5hY2NvdW50cy5kZXYk'; 
+  // const clerk_publishable_key = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
 
   return (
     <ClerkProvider 
@@ -23,6 +24,8 @@ const App = () => {
             <Route index  element={<HomePage />} />
             <Route path="signup" element={<SignUpPage />} />
           </Route>
+
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </Router>
     </ClerkProvider>
