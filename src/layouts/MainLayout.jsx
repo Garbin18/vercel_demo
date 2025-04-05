@@ -84,7 +84,12 @@ const MainLayout = () => {
                   />
                 </div>
               ) : (
-                <Button type="primary" ghost>Get Started</Button>
+                <Button 
+                  type="primary" ghost
+                  onClick={() => navigate('/signup')}
+                  >
+                  Get Started
+                </Button>
               )}
             </div>
           </>
@@ -128,7 +133,12 @@ const MainLayout = () => {
                   }}
                 />
               ) : (
-                <Button type="primary" ghost size="small" style={{ height: 32 }}>
+                <Button 
+                  type="primary" 
+                  ghost size="small" 
+                  style={{ height: 32 }}
+                  onClick={() => navigate('/signup')}
+                  >
                   Get Started
                 </Button>
               )}
