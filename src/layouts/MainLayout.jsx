@@ -95,7 +95,7 @@ const MainLayout = () => {
           </>
         ) : (
           <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center',marginRight:5 }}>
               <Dropdown 
                 menu={{
                   items: menuItems,
@@ -120,18 +120,28 @@ const MainLayout = () => {
                 position: 'absolute',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                marginLeft:'-40px'
+                marginLeft:'-50px'
               }}
             />
             <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginRight:'10px' }}>
               {user ? (
-                <UserButton 
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-8 h-8" // 移动端头像稍小
-                    }
-                  }}
-                />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <Button 
+                    type="primary" 
+                    ghost
+                    onClick={() => navigate('/dashboard')}
+                    style={{ marginRight: 5,marginLeft:5 }}
+                  >
+                    Dashboard
+                  </Button>
+                  <UserButton 
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-8 h-8" // 移动端头像稍小
+                      }
+                    }}
+                  />
+                </div>
               ) : (
                 <Button 
                   type="primary" 

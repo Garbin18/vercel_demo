@@ -166,7 +166,8 @@ const DashboardPage = () => {
                   height: '100%',
                   background: 'transparent',
                   fontSize: '18px',
-                  '& .ant-menu-title-content': {
+                  '& .antMenuTitleContent': {
+                  // '& .ant-menu-title-content': {
                     display: 'flex',
                     alignItems: 'center'
                   }
