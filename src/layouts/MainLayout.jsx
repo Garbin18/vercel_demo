@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet,useNavigate  } from 'react-router-dom';
-import { Layout, Menu, Button, Dropdown } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Layout, Menu, Button } from 'antd';
+// import { MenuOutlined } from '@ant-design/icons';
 import { UserButton, useUser } from '@clerk/clerk-react';
 import logo from '../assets/images/Remika.png';
 
@@ -96,7 +96,7 @@ const MainLayout = () => {
         ) : (
           <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center',marginRight:5 }}>
-              <Dropdown 
+              {/* <Dropdown 
                 menu={{
                   items: menuItems,
                   selectedKeys: [selectedMenuKey],
@@ -109,7 +109,7 @@ const MainLayout = () => {
                   icon={<MenuOutlined style={{ color: 'rgba(0, 0, 0, 0.88)' }}/>}
                   style={{ fontSize: 20, width: 48, height: 48 }}
                 />
-              </Dropdown>
+              </Dropdown> */}
             </div>
             <img
               src={logo}
@@ -118,9 +118,8 @@ const MainLayout = () => {
                 height: 30,
                 width: 'auto',
                 position: 'absolute',
-                left: '50%',
                 transform: 'translateX(-50%)',
-                marginLeft:'-50px'
+                marginLeft:'80px'
               }}
             />
             <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginRight:'10px' }}>

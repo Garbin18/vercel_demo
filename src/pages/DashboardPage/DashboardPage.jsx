@@ -188,7 +188,7 @@ const DashboardPage = () => {
               marginTop: 64,
               transition: 'margin 0.2s',
               height: 'calc(100vh - 64px)',
-              overflow: 'hidden',
+              overflow: 'auto',
               position: 'relative'
             }}>
             {renderContent()}
