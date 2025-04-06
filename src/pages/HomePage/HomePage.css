@@ -4,6 +4,9 @@
     /* min-height: calc(100vh - 80px); 减去导航栏高度 */
     text-align: center;
     padding: 2rem;
+    flex-direction: column;  
+    align-items: center;
+    margin-top: -20px;
   }
   
   .hero-content {
@@ -46,9 +49,65 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
-  
+
+.homepage-investment-adviser {
+  max-width: 1400px !important;  
+}
+
+  /* 调整按钮最小高度和间距 */
+.homepage-investment-adviser .ant-btn {
+  min-height: 320px !important;  /* 增加高度 */
+  padding: 32px !important;      /* 增大内边距 */
+  gap: 24px !important;          /* 增加元素间距 */
+}
+
+/* 调整图标大小 */
+.homepage-investment-adviser .anticon {
+  font-size: 56px !important;    /* 放大图标 */
+  margin-bottom: 16px !important;
+}
+
+/* 优化标题和描述的排版 */
+.homepage-investment-adviser .ant-typography {
+  font-size: 20px !important;    /* 增大标题 */
+  line-height: 1.4 !important;
+}
+
+.homepage-investment-adviser p {
+  font-size: 16px !important;    /* 增大描述文字 */
+  line-height: 1.6 !important;
+  -webkit-line-clamp: 4 !important; /* 增加描述行数 */
+}
+
+[id^="adviser-section"], 
+[id^="analyses-section"], 
+[id^="news-section"] {
+  scroll-margin-top: 100px; /* 根据导航栏高度调整 */
+}
   
   @media (max-width: 768px) {
+
+    .homepage-investment-adviser {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center !important;
+      width: 100% !important;
+      padding: 0 16px !important;    /* 增加左右间距 */
+      max-width: 100% !important;    /* 解除最大宽度限制 */
+    }
+
+      /* 新增按钮宽度调整 */
+    .homepage-investment-adviser .ant-btn {
+      min-height: 240px !important;
+      width: 100% !important;        /* 强制占满容器宽度 */
+      min-width: 340px !important;   /* 设置最小宽度 */
+      padding: 24px !important;      /* 保持适当内边距 */
+    }
+
+    /* 微调图标大小 */
+    .homepage-investment-adviser .anticon {
+      font-size: 40px !important;
+    }
 
     .main-title {
       font-size: 2.2rem !important;

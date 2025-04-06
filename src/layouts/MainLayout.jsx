@@ -8,16 +8,51 @@ import logo from '../assets/images/Remika.png';
 const { Header, Content } = Layout;
 
 const menuItems = [
-  { key: '1', label: 'Models' },
-  { key: '2', label: 'Analyses' },
-  { key: '3', label: 'News' }
+  { key: 'adviser', label: 'Adviser' },
+  { key: 'analyses', label: 'Analyses' },
+  { key: 'news', label: 'News' }
 ];
 
 const MainLayout = () => {
+
+  const contentRef = React.useRef();
+
   const [isMobile, setIsMobile] = React.useState(false);
-  const [selectedMenuKey, setSelectedMenuKey] = React.useState('1');
+  // const [selectedMenuKey, setSelectedMenuKey] = React.useState('1');
+  const [selectedMenuKey] = React.useState('1');
+
   const { user } = useUser(); // 获取用户信息
+
   const navigate = useNavigate();
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section && contentRef.current) {
+      const headerHeight = 80;
+      const sectionTop = section.offsetTop - headerHeight;
+      contentRef.current.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // 修改菜单点击处理
+  const handleMenuSelect = ( key ) => {
+    switch(key) {
+      case 'adviser':
+        scrollToSection('adviser-section');
+        break;
+      case 'analyses':
+        scrollToSection('analyses-section');
+        break;
+      case 'news':
+        scrollToSection('news-section');
+        break;
+      default:
+        break;
+    }
+  };
 
   React.useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -42,7 +77,7 @@ const MainLayout = () => {
       }}>
         {!isMobile ? (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', flex: 1, marginLeft:'350px', height: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flex: 1, marginLeft:'250px', height: '100%' }}>
               <img
                 src={logo}
                 alt="Logo"
@@ -52,7 +87,8 @@ const MainLayout = () => {
                 theme="light"
                 mode="horizontal"
                 selectedKeys={[selectedMenuKey]}
-                onSelect={({ key }) => setSelectedMenuKey(key)}
+                onSelect={({ key }) => handleMenuSelect(key)}
+                // onSelect={({ key }) => setSelectedMenuKey(key)}
                 items={menuItems}
                 style={{ 
                   flex: 1,
@@ -63,7 +99,7 @@ const MainLayout = () => {
                 }}
               />
             </div>
-            <div style={{ display: 'flex', gap: 8, marginRight:'430px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 8, marginRight:'200px', alignItems: 'center' }}>
               {user ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <Button 
@@ -157,13 +193,15 @@ const MainLayout = () => {
       </Header>
 
       {/* 内容区域 */}
-      <Content style={{
-        marginTop: 64,
-        padding: 16,
-        height: 'calc(100vh - 64px)',
-        overflow: 'auto',
-        background: '#ffffff',
-      }}>
+      <Content 
+        ref={contentRef}
+        style={{
+          marginTop: 80,
+          padding: 16,
+          height: 'calc(100vh - 80px)',
+          overflow: 'auto',
+          background: '#ffffff',
+        }}>
         <Outlet />
       </Content>
     </Layout>

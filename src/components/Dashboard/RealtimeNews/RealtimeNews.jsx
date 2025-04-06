@@ -14,19 +14,29 @@ const buttonStyle = {
   flexDirection: 'column',
   alignItems: 'flex-start',
   gap: '16px',         // 元素间距
-  transition: 'all 0.3s',
   textAlign: 'left',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',  // 添加基础阴影
+  transform: 'translateY(0)',
   ':hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
     borderColor: '#1890ff',
-    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
-    transform: 'translateY(-4px)'
+    '& svg': {  // 添加图标颜色变化
+      color: '#40a9ff'
+    }
+  },
+  ':active': {
+    transform: 'translateY(-2px)',
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
   }
 };
 
 const iconStyle = {
   fontSize: 50,
   color: '#1890ff',
-  marginBottom: 24      // 减少图标下方间距
+  marginBottom: 24,      // 减少图标下方间距
+  transition: 'color 0.3s ease-in-out'
 };
 
 const titleStyle = {
@@ -34,6 +44,7 @@ const titleStyle = {
   fontWeight: 600,     // 加粗标题
   color: 'rgba(0, 0, 0, 0.85)',
   lineHeight: 1.2,
+  transition: 'color 0.3s ease-in-out'
 };
 
 const descStyle = {
@@ -60,6 +71,14 @@ const RealtimeNews = () => {
         <Col xs={24} sm={12} md={8} lg={8}>
           <Button 
             style={buttonStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#1890ff';
+              e.currentTarget.querySelector('.anticon').style.color = '#40a9ff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#f0f0f0';
+              e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
+            }}
           >
             <div style={contentWrapper}>
               <AppleOutlined  style={iconStyle} />
@@ -74,6 +93,14 @@ const RealtimeNews = () => {
         <Col xs={24} sm={12} md={8} lg={8}>
           <Button 
             style={buttonStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#1890ff';
+              e.currentTarget.querySelector('.anticon').style.color = '#40a9ff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#f0f0f0';
+              e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
+            }}
           >
             <div style={contentWrapper}>
               <CarOutlined  style={iconStyle} />
@@ -89,6 +116,14 @@ const RealtimeNews = () => {
         <Col xs={24} sm={12} md={8} lg={8}>
           <Button 
             style={buttonStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#1890ff';
+              e.currentTarget.querySelector('.anticon').style.color = '#40a9ff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#f0f0f0';
+              e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
+            }}
           >
             <div style={contentWrapper}>
               <ShoppingOutlined  style={iconStyle} />
