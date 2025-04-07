@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col } from 'antd';
 import { MessageOutlined, FileSearchOutlined, CalculatorOutlined } from '@ant-design/icons';
 
@@ -65,6 +66,9 @@ const contentWrapper = {
 };
 
 const InvestmentAdviser = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div style={{ padding: 24 }}>
       <Row gutter={[24, 24]}>
@@ -79,6 +83,7 @@ const InvestmentAdviser = () => {
               e.currentTarget.style.borderColor = '#f0f0f0';
               e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
             }}
+            onClick={() => navigate('/openai')} 
           >
             <div style={contentWrapper}>
               <MessageOutlined style={iconStyle} />
