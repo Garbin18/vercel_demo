@@ -89,14 +89,20 @@ export default function OpenaiChatBox() {
       </div>
       <div className="form">
         <form onSubmit={handleSubmit} className="input-box">
-          <input
+          <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="messages..."
+            placeholder="输入消息..."
             disabled={loading}
+            rows={1} // 初始行数
+            onInput={(e) => {
+              // 自动调整高度
+              e.target.style.height = 'auto';
+              e.target.style.height = e.target.scrollHeight + 'px';
+            }}
           />
           <button type="submit" disabled={loading}>
-            {loading ? 'sending...' : 'send'}
+            {loading ? '发送中...' : '发送'}
           </button>
         </form>
       </div>
