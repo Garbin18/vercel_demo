@@ -1,12 +1,40 @@
+import React from 'react';
 import { useState,useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/atom-one-dark.css'; // 代码高亮主题
 import './OpenaiChatBox.css'
 
 
 export default function OpenaiChatBox() {
-  const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [copiedVisible, setCopiedVisible] = useState(false);
   const messagesEndRef = useRef(null); 
+
+  // 在代码组件中修改复制逻辑
+  const copyCode = (children) => {
+    // 递归提取文本内容
+    const extractText = (node) => {
+      if (typeof node === 'string') return node;
+      if (React.isValidElement(node)) {
+        return React.Children.map(node.props.children, extractText).join('')
+      }
+      return '';
+    };
+  
+    const text = React.Children.toArray(children)
+      .map(child => extractText(child))
+      .join('')
+      .replace(/\n$/, ''); // 移除最后一个换行
+  
+    navigator.clipboard.writeText(text).then(() => {
+        setCopiedVisible(true);
+        setTimeout(() => setCopiedVisible(false), 1500);
+      });
+  };
 
   // 新增滚动逻辑
   useEffect(() => {
@@ -58,7 +86,7 @@ export default function OpenaiChatBox() {
     } catch (error) {
       setMessages(prev => [...prev, {
         role: 'system',
-        content: '❌ 请求失败，请稍后重试'
+        content: '❌ please try again'
       }]);
     } finally {
       setLoading(false);
@@ -68,31 +96,60 @@ export default function OpenaiChatBox() {
   return (
     <div className="chat-container">
       <div className="messages">
-        {messages.map((msg, i) => (
+      { messages.map((msg, i) => (
         <div key={i} className={`message ${msg.role}`}>
           <div className="content">
-            {msg.content.split('```').map((segment, index) => (
-              index % 2 === 0 ? (
-                <span key={index}>{segment}</span>
-              ) : (
-                <pre key={index}>
-                  <code>{segment}</code>
-                </pre>
-              )
-            ))}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+              components={{
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <div className="code-block">
+                      <div className="code-header">
+                        <span>{match[1]}</span>
+                        <button 
+                          className="copy-button"
+                          onClick={() => copyCode(children)}
+                        >
+                          Copy
+                        </button>
+                      </div>
+                      <pre className={className}>
+                        <code {...props}>{children}</code>
+                      </pre>
+                    </div>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+                img({ node, ...props }) {
+                  return <img {...props} style={{ maxWidth: '100%', borderRadius: '8px' }}  alt="" />
+                },
+                a({ node, children, ...props }) { // 确保 <a> 有内容
+                    return <a {...props} target="_blank" rel="noopener noreferrer">{children || props.href}</a>
+                  }
+              }}
+            >
+              {msg.content}
+            </ReactMarkdown>
           </div>
         </div>
-        ))}
+      ))}
         {/* 添加滚动锚点 */}
         <div ref={messagesEndRef} />
         {/* {loading && <div className="message system">⏳ 思考中...</div>} */}
+        {copiedVisible && <div className="copy-notification">✅ Copied</div>}
       </div>
       <div className="form">
         <form onSubmit={handleSubmit} className="input-box">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="输入消息..."
+            placeholder="ask any questions"
             disabled={loading}
             rows={1} // 初始行数
             onInput={(e) => {
@@ -102,7 +159,7 @@ export default function OpenaiChatBox() {
             }}
           />
           <button type="submit" disabled={loading}>
-            {loading ? '发送中...' : '发送'}
+            {loading ? 'sending' : 'send'}
           </button>
         </form>
       </div>

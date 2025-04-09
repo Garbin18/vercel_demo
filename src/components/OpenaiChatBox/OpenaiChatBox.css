@@ -12,14 +12,14 @@
   }
 
   .message.user {
-    background: #007bff;
-    color: white;
+    background: #e9ecef;
+    color: black;
     margin-left: auto;
     margin-right: calc((100% - 720px)/2);
   }
 
   .message.assistant {
-    background: #e9ecef;
+    /* background: #e9ecef; */
     margin-right: auto;
     margin-left: calc((100% - 720px)/2);
     transition: margin-left 0.2s ease-in-out;
@@ -103,7 +103,7 @@
 /* 添加代码块基础样式 */
 .message pre {
   background: #f5f5f5;
-  padding: 0.8rem;
+  padding: 0.1rem;
   border-radius: 6px;
   margin: 0.5rem 0;
   overflow-x: auto;
@@ -117,26 +117,28 @@
 
 /* 消息通用样式 */
 .message {
-  margin: 0.8rem 0;
-  padding: 1rem;
+  margin: 0.5rem 0;
+  padding: 0.8rem 1rem;
   border-radius: 1rem;
   max-width: 90%; /* 适当调大最大宽度 */
   width: fit-content; /* 新增关键属性 */
   word-wrap: break-word; /* 保证长单词换行 */
-  white-space: pre-wrap; /* 保留换行符 */
+  /* white-space: pre-wrap;  */
 }
 
 .message.user {
-  background: #007bff;
-  color: white;
+  background: #e9ecef;
+  color: black;
   margin-left: auto;
-  max-width: 720px;
+  max-width: 680px;
+  padding: 0.2rem 1rem;
 }
 
 .message.assistant {
-  background: #e9ecef;
+  /* background: #e9ecef; */
   margin-right: auto;
-  max-width: 720px;
+  max-width: 680px;
+  padding: 0.2rem 1rem;
 }
 
 .message.system {
@@ -220,3 +222,191 @@ textarea {
   border-radius: 3px;
 }
 
+/* Markdown 内容容器 */
+.react-markdown {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* 标题 */
+.react-markdown h1, 
+.react-markdown h2, 
+.react-markdown h3 {
+  margin: 1.2em 0 0.8em;
+  font-weight: bold;
+}
+
+.react-markdown h1 { font-size: 1.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+.react-markdown h2 { font-size: 1.3em; }
+.react-markdown h3 { font-size: 1.1em; }
+
+/* 列表 */
+.react-markdown ul, 
+.react-markdown ol {
+  padding-left: 2em;
+  margin: 0.8em 0;
+}
+
+.react-markdown li {
+  margin: 0.4em 0;
+}
+
+/* 表格 */
+.react-markdown table {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* 添加阴影 */
+  overflow-x: auto;
+  display: block;
+  border: 2px solid red !important;
+}
+
+/* 表头 */
+.react-markdown th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border: 1px solid #dee2e6; /* 更明显的边框 */
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* 表格单元格 */
+.react-markdown td {
+  border: 2px solid blue !important;
+  /* border: 1px solid #dee2e6;  */
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+/* 斑马纹效果 */
+.react-markdown tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* 表格标题 */
+.react-markdown caption {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+
+.react-markdown th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.react-markdown td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+.react-markdown tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+
+/* 引用 */
+.react-markdown blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 1em;
+  margin: 1em 0;
+  color: #666;
+}
+
+/* 行内代码 */
+.react-markdown code:not(pre code) {
+  background: #f0f0f0;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* 代码块容器 */
+.code-block {
+  /* margin: 1em 0; */
+  border-radius: 6px;
+}
+
+/* 代码头 */
+.code-header {
+  background: grey; /* 暗色背景 */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9em;
+}
+
+/* 调整代码块本身的圆角 */
+.code-block pre {
+  padding: 0.7rem !important;  /* 增加内边距 */
+  margin: 0 !important;
+}
+
+/* 复制按钮 */
+.copy-button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.copy-button::before {
+  content: "📋";
+}
+
+/* 调整代码块行号对齐 */
+.hljs-ln {
+  padding: 0 0.5rem;  /* 增加行号区域的内边距 */
+}
+
+/* 调整代码内容与边框的距离 */
+.code-block code {
+  display: block;
+  padding: 0.4rem 0;  /* 增加代码上下间距 */
+}
+
+.copy-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  animation: fadeInOut 1.5s ease-in-out;
+  z-index: 1000;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
