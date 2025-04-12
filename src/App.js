@@ -7,6 +7,7 @@ import SignUpPage from './pages/auth/SignUpPage/SignUpPage';
 import SignInPage from './pages/auth/SignInPage/SignInPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import OpenAiChatBoxPage from './pages/chatbox/OpenAiChatBoxPage/OpenAiChatBoxPage';
+import DeepseekChatBoxPage from './pages/chatbox/DeepseekChatBoxPage/DeepseekChatBoxPage';
 import './App.css';
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="signin" element={<SignInPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/openai" element={<OpenAiChatBoxPage />} />
+          <Route path="/deepseek" element={<DeepseekChatBoxPage />} />
         </Routes>
       </Router>
     </ClerkProvider>

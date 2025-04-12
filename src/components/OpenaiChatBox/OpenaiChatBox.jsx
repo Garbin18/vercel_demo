@@ -57,7 +57,8 @@ export default function OpenaiChatBox() {
       // 添加 Assistant 的空白消息用于逐步更新
       setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
-      const response = await fetch('/api/openai', {
+      // const response = await fetch('/api/openai', {
+        const response = await fetch('https://my-python-api-yrmx.onrender.com/api/openai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages })

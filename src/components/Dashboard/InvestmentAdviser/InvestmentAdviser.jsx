@@ -105,6 +105,7 @@ const InvestmentAdviser = () => {
               e.currentTarget.style.borderColor = '#f0f0f0';
               e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
             }}
+            onClick={() => navigate('/deepseek')} 
           >
             <div style={contentWrapper}>
               <FileSearchOutlined style={iconStyle} />

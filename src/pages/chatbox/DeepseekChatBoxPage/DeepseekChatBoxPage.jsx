@@ -4,7 +4,7 @@ import { MessageOutlined,HomeOutlined} from '@ant-design/icons';
 import { MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme,Button} from 'antd';
 import { UserButton, useUser } from '@clerk/clerk-react';
-import OpenaiChatBox from '../../../components/OpenaiChatBox/OpenaiChatBox'
+import DeepseekChatBox from '../../../components/DeepseekChatBox/DeepseekChatBox'
 
 
 const { Header, Content, Sider } = Layout;
@@ -15,7 +15,7 @@ const sider_titles = [
   // { key: 3,label: 'Chat 03'},
 ];
 
-const OpenAiChatBoxPage = () => {
+const DeepseekChatBoxPage = () => {
 
   const { user } = useUser(); // 获取用户信息
 
@@ -62,13 +62,13 @@ const OpenAiChatBoxPage = () => {
   const renderContent = () => {
     switch(selectedMenuKey) {
         case '1':
-            return <OpenaiChatBox />;
+            return <DeepseekChatBox />;
             // case '2':
             // return <OpenaiChatBox />;
             // case '3':
             // return <OpenaiChatBox />;
             default:
-            return <OpenaiChatBox />;
+            return <DeepseekChatBox />;
     }
   };
 
@@ -191,6 +191,9 @@ const OpenAiChatBoxPage = () => {
                 background: colorBgContainer,
                 padding: '12px 0',
                 overflow: 'auto',
+                // '::-webkit-scrollbar': {
+                //   display: 'none'
+                // },
                 scrollbarWidth: 'none',  // Firefox
                 msOverflowStyle: 'none', // IE/Edge
                 // borderRight: `1px solid ${colorBorder}`, 
@@ -205,11 +208,11 @@ const OpenAiChatBoxPage = () => {
                   height: '100%',
                   background: 'transparent',
                   fontSize: '18px',
-                  '& .antMenuTitleContent': {
-                  // '& .ant-menu-title-content': {
-                    display: 'flex',
-                    alignItems: 'center'
-                  }
+                  // '& .antMenuTitleContent': {
+                  // // '& .ant-menu-title-content': {
+                  //   display: 'flex',
+                  //   alignItems: 'center'
+                  // }
                 }}
                 // items={sider_titles}
                 items={sider_titles.map(item => ({
@@ -276,6 +279,6 @@ const OpenAiChatBoxPage = () => {
     </Layout>
   );
 };
-export default OpenAiChatBoxPage;
+export default DeepseekChatBoxPage;
 
    
