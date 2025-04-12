@@ -1,5 +1,5 @@
 
-@media (minWidth: 768px) {
+@media (min-width: 768px) {
   .chat-container {
     /* max-width: 720px;  */
     width: 100%;
