@@ -6,7 +6,7 @@ import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/atom-one-dark.css';
 import './DeepseekChatBox.css';
 
-export default function OpenaiChatBox() {
+export default function DeepseekChatBox() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
