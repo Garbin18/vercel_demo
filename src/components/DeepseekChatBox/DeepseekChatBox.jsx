@@ -61,8 +61,8 @@ export default function OpenaiChatBox() {
       setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
       bufferedContentRef.current = ''; // 重置缓存
 
-      const response = await fetch('http://localhost:8000/api/deepseek', {
-        // const response = await fetch('https://my-python-api-yrmx.onrender.com/api/deepseek', {
+      // const response = await fetch('http://localhost:8000/api/deepseek', {
+        const response = await fetch('https://my-python-api-yrmx.onrender.com/api/deepseek', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: [...messagesRef.current, userMessage] })
