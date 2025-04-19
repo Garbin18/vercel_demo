@@ -8,6 +8,7 @@ import SignInPage from './pages/auth/SignInPage/SignInPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import OpenAiChatBoxPage from './pages/chatbox/OpenAiChatBoxPage/OpenAiChatBoxPage';
 import DeepseekChatBoxPage from './pages/chatbox/DeepseekChatBoxPage/DeepseekChatBoxPage';
+import LangchainAgentBoxPage from './pages/chatbox/LangchainAgentBoxPage/LangchainAgentBoxPage';
 import './App.css';
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/openai" element={<OpenAiChatBoxPage />} />
           <Route path="/deepseek" element={<DeepseekChatBoxPage />} />
+          <Route path="/langchain" element={<LangchainAgentBoxPage />} />
         </Routes>
       </Router>
     </ClerkProvider>

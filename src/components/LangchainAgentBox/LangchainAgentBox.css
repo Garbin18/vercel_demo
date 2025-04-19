@@ -1,0 +1,412 @@
+
+@media (min-width: 768px) {
+  .chat-container {
+    /* max-width: 720px;  */
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .messages {
+    width: 100%;
+    /* max-width: 720px;  */
+  }
+
+  .message.user {
+    background: #e9ecef;
+    color: black;
+    margin-left: auto;
+    margin-right: calc((100% - 720px)/2);
+  }
+
+  .message.assistant {
+    /* background: #e9ecef; */
+    margin-right: auto;
+    margin-left: calc((100% - 720px)/2);
+    transition: margin-left 0.2s ease-in-out;
+  }
+  
+  .message.system {
+    background: transparent;
+    color: #666;
+    text-align: center;
+    margin-right: auto;
+    margin-left: calc((100% - 720px)/2);
+    transition: margin-left 0.2s ease-in-out;
+  }
+
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  .input-box {
+    gap: 0.3rem;
+    padding: 0.8rem;
+    min-width: 0;
+  }
+  
+  .input-box input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    min-width: 0;
+  }
+
+  .input-box button {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    flex-shrink: 1;
+    min-width: 60px;
+  }
+
+  .message {
+    max-width: 95% !important;
+    padding: 0.8rem;
+  }
+  
+  .message.user {
+    max-width: 90% !important;
+  }
+
+  textarea {
+    min-height: 40px;
+    padding-right: 3.5rem;
+  }
+  
+  button {
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 容器布局 */
+.chat-container {
+  width: 100%;
+  /* margin: 0 auto; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 消息区域 */
+.messages {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+  /* background: #f5f5f5; */
+  /* height: calc(100vh - 72px); */
+  height: calc(100vh - 160px); /* 调整高度计算 */
+  overflow-anchor: auto;
+  scroll-behavior: smooth;
+}
+
+/* 添加代码块基础样式 */
+.message pre {
+  background: #f5f5f5;
+  padding: 0.1rem;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+}
+
+.message code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* 消息通用样式 */
+.message {
+  margin: 0.5rem 0;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  max-width: 90%; /* 适当调大最大宽度 */
+  width: fit-content; /* 新增关键属性 */
+  word-wrap: break-word; /* 保证长单词换行 */
+  /* white-space: pre-wrap;  */
+}
+
+.message.user {
+  background: #e9ecef;
+  color: black;
+  margin-left: auto;
+  max-width: 680px;
+  padding: 0.2rem 1rem;
+}
+
+.message.assistant {
+  /* background: #e9ecef; */
+  margin-right: auto;
+  max-width: 680px;
+  padding: 0.2rem 1rem;
+}
+
+.message.system {
+  background: transparent;
+  color: #666;
+  text-align: center;
+}
+
+.form {
+  justify-content: center; /* 添加水平居中 */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* 保持垂直居中 */
+  padding: 1rem;
+}
+
+/* 输入框区域 */
+.input-box {
+  display: flex;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto; /* 添加自动边距实现居中 */
+  padding: 0.5rem;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  border-radius: 0.8rem;
+  position: relative; /* 添加相对定位 */
+  align-items: flex-end; /* 内容底部对齐 */
+}
+
+textarea {
+  flex: 1;
+  padding: 0rem 4rem 0rem 0rem; /* 右侧留出按钮空间 */
+  /* border: 1px solid #ddd; */
+  border: none; 
+  outline: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: none; /* 禁止手动调整大小 */
+  min-height: 48px; /* 最小高度 */
+  max-height: 200px; /* 最大高度 */
+  overflow-y: auto; /* 超出时显示滚动条 */
+  line-height: 1.5;
+}
+
+.input-box button {
+  padding: 0.5rem 1rem;
+  background: #3b82f6; /* 明亮的蓝色 */
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem; /* 调小字体 */
+  height: 36px;
+}
+
+.input-box button:hover:not(:disabled) {
+  background: white;
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.input-box button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 滚动条样式 */
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+/* Markdown 内容容器 */
+.react-markdown {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* 标题 */
+.react-markdown h1, 
+.react-markdown h2, 
+.react-markdown h3 {
+  margin: 1.2em 0 0.8em;
+  font-weight: bold;
+}
+
+.react-markdown h1 { font-size: 1.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+.react-markdown h2 { font-size: 1.3em; }
+.react-markdown h3 { font-size: 1.1em; }
+
+/* 列表 */
+.react-markdown ul, 
+.react-markdown ol {
+  padding-left: 2em;
+  margin: 0.8em 0;
+}
+
+.react-markdown li {
+  margin: 0.4em 0;
+}
+
+/* 表格 */
+.react-markdown table {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* 添加阴影 */
+  overflow-x: auto;
+  display: block;
+  border: 2px solid red !important;
+}
+
+/* 表头 */
+.react-markdown th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border: 1px solid #dee2e6; /* 更明显的边框 */
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* 表格单元格 */
+.react-markdown td {
+  border: 2px solid blue !important;
+  /* border: 1px solid #dee2e6;  */
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+/* 斑马纹效果 */
+.react-markdown tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* 表格标题 */
+.react-markdown caption {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+
+.react-markdown th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.react-markdown td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+.react-markdown tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+
+/* 引用 */
+.react-markdown blockquote {
+  border-left: 4px solid #ddd;
+  padding: 0 1em;
+  margin: 1em 0;
+  color: #666;
+}
+
+/* 行内代码 */
+.react-markdown code:not(pre code) {
+  background: #f0f0f0;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* 代码块容器 */
+.code-block {
+  /* margin: 1em 0; */
+  border-radius: 6px;
+}
+
+/* 代码头 */
+.code-header {
+  background: grey; /* 暗色背景 */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9em;
+}
+
+/* 调整代码块本身的圆角 */
+.code-block pre {
+  padding: 0.7rem !important;  /* 增加内边距 */
+  margin: 0 !important;
+}
+
+/* 复制按钮 */
+.copy-button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copy-button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.copy-button::before {
+  content: "📋";
+}
+
+/* 调整代码块行号对齐 */
+.hljs-ln {
+  padding: 0 0.5rem;  /* 增加行号区域的内边距 */
+}
+
+/* 调整代码内容与边框的距离 */
+.code-block code {
+  display: block;
+  padding: 0.4rem 0;  /* 增加代码上下间距 */
+}
+
+.copy-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  animation: fadeInOut 1.5s ease-in-out;
+  z-index: 1000;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

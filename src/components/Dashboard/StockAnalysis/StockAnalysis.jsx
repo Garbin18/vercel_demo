@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col } from 'antd';
 import { StockOutlined, TrademarkCircleOutlined, GlobalOutlined  } from '@ant-design/icons';
 
@@ -65,6 +66,9 @@ const contentWrapper = {
 };
 
 const StockAnalysis = () => {
+
+  const navigate = useNavigate();
+  
   return (
     <div style={{ padding: 24 }}>
       <Row gutter={[24, 24]}>
@@ -100,6 +104,7 @@ const StockAnalysis = () => {
               e.currentTarget.style.borderColor = '#f0f0f0';
               e.currentTarget.querySelector('.anticon').style.color = '#1890ff';
             }}
+            onClick={() => navigate('/langchain')} 
           >
             <div style={contentWrapper}>
               <TrademarkCircleOutlined style={iconStyle} />
