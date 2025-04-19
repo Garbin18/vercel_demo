@@ -62,7 +62,8 @@ export default function OpenaiChatBox() {
       bufferedContentRef.current = ''; // 重置缓存
 
       // const response = await fetch('http://localhost:8000/api/openai', {
-        const response = await fetch('https://my-python-api-yrmx.onrender.com/api/openai', {
+        // const response = await fetch('https://my-python-api-yrmx.onrender.com/api/openai', {
+        const response = await fetch('https://render-python-api.onrender.com/api/openai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: [...messagesRef.current, userMessage] })

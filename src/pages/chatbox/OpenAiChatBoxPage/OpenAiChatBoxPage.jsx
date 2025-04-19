@@ -226,7 +226,9 @@ const OpenAiChatBoxPage = () => {
                 background: colorBgContainer,
                 position: 'sticky',
                 bottom: 0,
-                zIndex: 1
+                zIndex: 1,
+                display: 'flex',      // 添加flex布局
+                justifyContent: 'center'  // 水平居中
                 }}>
                 <Button 
                   block
@@ -236,8 +238,10 @@ const OpenAiChatBoxPage = () => {
                   style={{
                     height: 30,
                     fontSize: 16,
-                    textAlign: 'left',
-                    paddingLeft: 24
+                    display: 'flex',    // 使用flex布局
+                    alignItems: 'center', // 垂直居中
+                    justifyContent: 'center', // 水平居中
+                    width: '100%'      // 设置宽度
                   }}
                 >
                   {!collapsed && 'Home'}
