@@ -184,8 +184,8 @@ export default function LangchainAgentBox() {
       setMessages(prev => [...prev, { role: 'assistant', content: '' ,steps: []}]);
       bufferedContentRef.current = ''; // 重置缓存
 
-      const response = await fetch('http://localhost:8000/api/langchain', {
-        // const response = await fetch('https://render-python-api.onrender.com/api/langchain', {
+      // const response = await fetch('http://localhost:8000/api/langchain', {
+        const response = await fetch('https://render-python-api.onrender.com/api/langchain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: input })
