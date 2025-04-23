@@ -1,19 +1,12 @@
 import React,{ useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MessageOutlined,HomeOutlined} from '@ant-design/icons';
-import { MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme,Button} from 'antd';
+import { Layout, theme,Button} from 'antd';
 import { UserButton, useUser } from '@clerk/clerk-react';
 import LangchainAgentBox from '../../../components/LangchainAgentBox/LangchainAgentBox'
 
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
-const sider_titles = [
-  { key: 1,label: 'Chat 01',icon: <MessageOutlined />},
-  // { key: 2,label: 'Chat 02'},
-  // { key: 3,label: 'Chat 03'},
-];
 
 const LangchainAgentBoxPage = () => {
 
@@ -53,24 +46,9 @@ const LangchainAgentBoxPage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [collapsed]);
 
-  const [selectedMenuKey, setSelectedMenuKey] = useState('1');
-
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
-  const renderContent = () => {
-    switch(selectedMenuKey) {
-        case '1':
-            return <LangchainAgentBox />;
-            // case '2':
-            // return <OpenaiChatBox />;
-            // case '3':
-            // return <OpenaiChatBox />;
-            default:
-            return <LangchainAgentBox />;
-    }
-  };
 
   return (
     <Layout style={{ 
@@ -87,18 +65,6 @@ const LangchainAgentBoxPage = () => {
           borderBottom: '1px solid #f0f0f0', 
           }}>
         <div style={{ display: 'flex', alignItems: 'center',marginLeft:'-40px', flex: 'none' }}>
-          <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: '20px',
-                width: 64,
-                height: 64,
-                color:'black',
-                marginRight:'10px'
-              }}
-            />
           <div 
             style={{
               fontSize: screenWidth < 768 ? '20px' : '26px',  // 响应式字体
@@ -164,119 +130,19 @@ const LangchainAgentBoxPage = () => {
             borderRadius: borderRadiusLG,
             // height: '100%',
             flex: 1,
-            overflow: 'hidden'
+            overflow: 'hidden',
+            display: 'flex',
+            justifyContent: 'center', // 水平居中
           }}
         >
-          <div style={{
-              position: 'fixed',
-              zIndex: 1001,  // 提高zIndex确保在内容上方
-              left: collapsed ? '-100%' : 0,
-              top: 64,
-              bottom: 0,
-              transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: '4px 0 12px rgba(0, 0, 0, 0.1)', // 添加阴影增强层次感
-              '@media (min-width: 768px)': {
-                position: 'relative',
-                left: 'auto',
-                boxShadow: 'none'
-              }
-          }}>
-            <Sider 
-              collapsible 
-              trigger={null} 
-              collapsed={collapsed}
-              collapsedWidth={0}  // 添加这个属性
-              style={{
-                height: '100%',
-                background: colorBgContainer,
-                padding: '12px 0',
-                overflow: 'auto',
-                // '::-webkit-scrollbar': {
-                //   display: 'none'
-                // },
-                scrollbarWidth: 'none',  // Firefox
-                msOverflowStyle: 'none', // IE/Edge
-                // borderRight: `1px solid ${colorBorder}`, 
-              }} 
-                width={280}>
-              <Menu
-                mode="inline" //垂直模式
-                selectedKeys={[selectedMenuKey]}
-                onSelect={({ key }) => setSelectedMenuKey(key)}
-                defaultSelectedKeys={['1']}
-                style={{
-                  height: '100%',
-                  background: 'transparent',
-                  fontSize: '18px',
-                  // '& .antMenuTitleContent': {
-                  // // '& .ant-menu-title-content': {
-                  //   display: 'flex',
-                  //   alignItems: 'center'
-                  // }
-                }}
-                // items={sider_titles}
-                items={sider_titles.map(item => ({
-                  ...item,
-                  style: { 
-                    height: 70,        // 菜单项高度
-                    lineHeight: '60px' // 文字垂直居中
-                  }
-                }))}
-              />
-              <div style={{
-                padding: '12px 24px',
-                borderTop: '1px solid rgba(0, 0, 0, 0.06)',
-                background: colorBgContainer,
-                position: 'sticky',
-                bottom: 0,
-                zIndex: 1,
-                display: 'flex',      // 添加flex布局
-                justifyContent: 'center'  // 水平居中
-                }}>
-                <Button 
-                  block
-                  type="text"
-                  icon={<HomeOutlined />} 
-                  onClick={() => navigate('/')}
-                  style={{
-                    height: 30,
-                    fontSize: 16,
-                    display: 'flex',    // 使用flex布局
-                    alignItems: 'center', // 垂直居中
-                    justifyContent: 'center', // 水平居中
-                    width: '100%'      // 设置宽度
-                  }}
-                >
-                  {!collapsed && 'Home'}
-                </Button>
-              </div>
-            </Sider>
-          </div>
-          {collapsed === false && screenWidth < 768 && (
-          <div 
-            style={{
-              position: 'fixed',
-              top: 64,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1000,
-              backgroundColor: 'rgba(0, 0, 0, 0.3)',
-              backdropFilter: 'blur(2px)',
-              transition: 'opacity 0.3s'
-            }}
-            onClick={() => setCollapsed(true)}
-          />
-          )}
           <Content style={{
-              marginLeft: screenWidth >= 768 ? (collapsed ? 0 : 280) : 0,
               marginTop: 64,
               transition: 'margin 0.2s',
               height: 'calc(100vh - 64px)',
               overflow: 'auto',
               position: 'relative'
             }}>
-            {renderContent()}
+            <LangchainAgentBox />
           </Content>
         </Layout>
       </div>

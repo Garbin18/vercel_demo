@@ -13,7 +13,7 @@ import './App.css';
 
 const App = () => {
     
-  // const clerk_publishable_key = '...'; 
+  // const clerk_publishable_key = ''; 
   const clerk_publishable_key = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
 
   return (
